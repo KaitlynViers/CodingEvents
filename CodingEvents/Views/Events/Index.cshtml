@@ -1,0 +1,33 @@
+﻿<link rel="stylesheet" type="text/css" href="~/css/custom.css">
+<script src="~/js/custom.js"></script>
+<h1>My Events</h1>
+
+<p>
+    <a asp-controller="Events" asp-action="Add">Add Event</a>
+</p>
+
+ @if (ViewBag.events.Count == 0)
+{
+    <p>No events yet!</p>
+}
+
+<partial name="/Views/Shared/LinkListPartial.cshtml" />
+
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+
+    @foreach (KeyValuePair<string,string> evt  in ViewBag.events)
+    {
+        <tr>
+           <td>@evt.Key</td>
+           <td>@evt.Value</td>
+        </tr>
+      
+    }
+</table>
+
+<img src="~/images/cutekitty.png">
