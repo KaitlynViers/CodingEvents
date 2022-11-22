@@ -1,20 +1,68 @@
 ﻿<link rel="stylesheet" type="text/css" href="~/css/custom.css">
 <script src="~/js/custom.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+@using CodingEvents.Models
+
+@model List<Event>
+
 <h1>My Events</h1>
 
 <p>
     <a asp-controller="Events" asp-action="Add">Add Event</a>
 </p>
 
- @if (ViewBag.events.Count == 0)
+<p>
+    <a asp-controller="Events" asp-action="Delete">Delete Event</a>
+</p>
+
+<p>
+    <a asp-controller="Events" asp-action="Edit">Edit Event</a>
+</p>
+
+
+@*Replacing ViewBag.Events.count*@
+
+ @if (Model.Count == 0) 
 {
     <p>No events yet!</p>
 }
 
+
+
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>E-Mail </th>
+        <th>Event Type</th>
+    </tr>
+
+    @foreach (var evt in Model) @*Replacing ViewBag.Events*@
+    {
+        <tr>
+            <td>@evt.Id</td>
+            <td>@evt.Name</td>
+            <td>@evt.Description</td>
+            <td>@evt.ContactEmail</td>
+            <td>@evt.Type</td>
+        
+            @*<td><a asp-controller="Events" asp-action="Edit" asp-route-id="@evt.Id">Edit Event</a></td>*@
+            
+        </tr>
+    }
+  
+</table>
+
+
 <partial name="/Views/Shared/LinkListPartial.cshtml" />
 
 
-<table>
+<img src="~/images/cutekitty.png">
+
+@*Used for the dictionary method in the controller section*@
+@**<table>
     <tr>
         <th>Name</th>
         <th>Description</th>
@@ -28,6 +76,5 @@
         </tr>
       
     }
-</table>
+</table> *@
 
-<img src="~/images/cutekitty.png">
